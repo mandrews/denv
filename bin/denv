@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -o errexit
+pushd "$(cd "$(dirname "$0")" ; pwd -P )/.." > /dev/null
+
+ARG=${1:-'base:latest'}
+IFS=':' read -ra ARR <<< "$ARG"
+IMAGE=${ARR[0]:-base}
+TAG=${ARR[1]:-latest}
+VOLUME=${2:-denv_$IMAGE}
+DEV_DIR=${DEV_DIR:-Development}
+
+docker volume create $VOLUME
+
+if [[ $VOLUME = "denv_$IMAGE" ]]; then
+  HOSTNAME="denv/${IMAGE}:${TAG}"
+else
+  HOSTNAME="denv/${IMAGE}:${TAG}@${VOLUME}"
+fi
+
+
+docker run \
+  --tty \
+  --interactive \
+  --env USER=$USER \
+  --env DEV_DIR=$DEV_DIR \
+  --hostname $HOSTNAME \
+  --volume $HOME/$DEV_DIR:$HOME/$DEV_DIR:delegated \
+  --volume $HOME/Desktop:$HOME/Desktop:delegated  \
+  --volume $VOLUME:$HOME/.local:delegated \
+  --volume $HOME/.ssh:$HOME/.ssh \
+  --volume $HOME/.bash_login:$HOME/.bash_login \
+  --volume $HOME/.gitconfig:$HOME/.gitconfig \
+  --volume $HOME/.zsh_history:$HOME/.zsh_history:rw \
+  --volume /var/run/docker.sock:/var/run/docker.sock \
+  denv/${IMAGE}:${TAG}

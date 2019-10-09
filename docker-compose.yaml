@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  app:
+    image: denv/base
+    environment:
+      - USER=$USER
+      - DEV_DIR=$DEV_DIR
+    command: tail -f /dev/null
+    hostname: 'denv/base'
+    volumes:
+      - $HOME/$DEV_DIR:$HOME/$DEV_DIR
+      - $HOME/Desktop:$HOME/Desktop
+      - $HOME/.bash_login:$HOME/.bash_login
+      - $HOME/.gitconfig:$HOME/.gitconfig
+      - $HOME/.ssh:$HOME/.ssh
+      - $HOME/.zsh_history:$HOME/.zsh_history:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+      - base:$HOME/.local:delegated
+
+volumes:
+  base:

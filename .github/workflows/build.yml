@@ -1,4 +1,4 @@
-name: CI
+name: Build and Push Docker Images
 
 on: [push]
 
@@ -7,5 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
+    - name: Build Docker Images
       run: bin/docker_build.sh
+    - name: Push Docker Images
+      run: |
+        bin/docker_login.sh
+        bin/docker_push.sh
+      env:
+        USER: mandrews
+        GITHUB_DOCKER_REGISTRY_TOKEN: ${{ secrets.GITHUB_DOCKER_REGISTRY_TOKEN }}

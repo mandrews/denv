@@ -3,7 +3,9 @@
 set -o errexit
 pushd "$(cd "$(dirname "$0")" ; pwd -P )/.." > /dev/null
 
-source .env.secret
+if [[ -f .env.secret ]]; then
+  source .env.secret
+fi
 
 if [[ -z "$GITHUB_DOCKER_REGISTRY_TOKEN" ]]; then
   cat <<EOF

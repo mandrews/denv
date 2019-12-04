@@ -57,4 +57,3 @@ denv python projectB
 ## TODO
 - [ ] Add [`awscli`](https://aws.amazon.com/cli/) to `base`
 - [ ] Add [`gcp`](https://cloud.google.com/sdk/install) to `base`
-- [ ] Configure [GitHub Actions](https://github.com/features/actions) to automatically build and publish Docker images

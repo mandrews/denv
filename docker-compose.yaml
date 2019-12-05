@@ -4,7 +4,7 @@ services:
   app:
     image: denv/base
     environment:
-      - USER=$USER
+      - GITHUB_USERNAME=$GITHUB_USERNAME
       - DEV_DIR=$DEV_DIR
     command: tail -f /dev/null
     hostname: 'denv/base'

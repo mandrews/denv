@@ -1,6 +1,6 @@
 FROM denv/base
 
-ARG USER
+ARG GITHUB_USERNAME
 
 USER root
 
@@ -9,4 +9,4 @@ RUN apk add --update \
     python3 \
     python3-dev
 
-USER $USER
+USER $GITHUB_USERNAME

@@ -22,7 +22,7 @@ fi
 docker run \
   --tty \
   --interactive \
-  --env USER=$USER \
+  --env GITHUB_USERNAME=$GITHUB_USERNAME \
   --env DEV_DIR=$DEV_DIR \
   --publish 0.0.0.0:4000:4000 \
   --hostname $HOSTNAME \

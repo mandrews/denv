@@ -1,6 +1,6 @@
 FROM denv/base
 
-ARG USER
+ARG GITHUB_USERNAME
 
 USER root
 
@@ -15,6 +15,6 @@ RUN apk add --update \
 RUN gem update && \
     gem install jekyll bundler json
 
-USER $USER
+USER $GITHUB_USERNAME
 
 EXPOSE 4000

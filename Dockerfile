@@ -1,6 +1,6 @@
 FROM alpine
 
-ARG USER
+ARG GITHUB_USERNAME
 ARG DEV_DIR
 
 # Install base toolchain
@@ -21,11 +21,11 @@ RUN apk update && \
 
 RUN mkdir -p /Users && \
     sed -e 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g' -i /etc/sudoers && \
-    adduser -S $USER -G root -h /Users/$USER && \
-    addgroup $USER wheel
+    adduser -S $GITHUB_USERNAME -G root -h /Users/$GITHUB_USERNAME && \
+    addgroup $GITHUB_USERNAME wheel
 
-WORKDIR /Users/$USER
-USER $USER
+WORKDIR /Users/$GITHUB_USERNAME
+USER $GITHUB_USERNAME
 
 # Configure tmux
 COPY tmux.conf .tmux.conf
@@ -41,19 +41,19 @@ COPY vimrc .vimrc
 RUN echo | echo | vim +PluginInstall +qall &>/dev/null
 
 # Configure denv
-ENV USER $USER
-ENV HOME /Users/$USER
+ENV GITHUB_USERNAME $GITHUB_USERNAME
+ENV HOME /Users/$GITHUB_USERNAME
 ENV DENV_HOME=$HOME/.denv
 ENV DEV_DIR $DEV_DIR
 ENV PATH $DENV_HOME/bin:$PATH
-ADD . $DENV_HOME
+ADD bin/denv $DENV_HOME
 
-RUN mkdir -p /Users/$USER/.local && \
-    chown -R $USER /Users/$USER/.local
+RUN mkdir -p /Users/$GITHUB_USERNAME/.local && \
+    chown -R $GITHUB_USERNAME /Users/$GITHUB_USERNAME/.local
 
 ENV SHELL /bin/zsh
-VOLUME /Users/$USER/.local
+VOLUME /Users/$GITHUB_USERNAME/.local
 
-WORKDIR /Users/$USER/$DEV_DIR
+WORKDIR /Users/$GITHUB_USERNAME/$DEV_DIR
 
 CMD ["/bin/zsh"]

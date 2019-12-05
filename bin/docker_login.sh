@@ -3,6 +3,10 @@
 set -o errexit
 pushd "$(cd "$(dirname "$0")" ; pwd -P )/.." > /dev/null
 
+if [[ -f .env ]]; then
+  source .env
+fi
+
 if [[ -f .env.secret ]]; then
   source .env.secret
 fi
@@ -15,6 +19,6 @@ EOF
 else
   echo "Logging into GitHub Docker Registry"
   echo $GITHUB_DOCKER_REGISTRY_TOKEN | \
-  docker login docker.pkg.github.com --username $USER --password-stdin
+  docker login docker.pkg.github.com --username $GITHUB_USERNAME --password-stdin
 fi
 

@@ -6,6 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
     - name: Pull Docker Images
       run: |
         bin/docker_login.sh
@@ -13,7 +14,6 @@ jobs:
       env:
         USER: mandrews
         GITHUB_DOCKER_REGISTRY_TOKEN: ${{ secrets.GITHUB_DOCKER_REGISTRY_TOKEN }}
-    - uses: actions/checkout@v1
     - name: Build Docker Images
       run: bin/docker_build.sh
     - name: Push Docker Images

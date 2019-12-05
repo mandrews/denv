@@ -3,7 +3,7 @@
 set -o errexit
 pushd "$(cd "$(dirname "$0")" ; pwd -P )/.." > /dev/null
 
-for IMAGE in base java python; do
+for IMAGE in base java python ruby; do
   docker tag denv/$IMAGE docker.pkg.github.com/$USER/denv/$IMAGE:latest
   docker push docker.pkg.github.com/$USER/denv/$IMAGE:latest
 done

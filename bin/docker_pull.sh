@@ -3,6 +3,8 @@
 set -o errexit
 pushd "$(cd "$(dirname "$0")" ; pwd -P )/.." > /dev/null
 
+docker pull alpine
+
 for IMAGE in base java python ruby; do
   docker pull docker.pkg.github.com/$USER/denv/$IMAGE:latest
   docker tag docker.pkg.github.com/$USER/denv/$IMAGE:latest denv/$IMAGE

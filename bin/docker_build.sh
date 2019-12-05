@@ -7,6 +7,7 @@ DEV_DIR=Development
 
 docker build \
   --build-arg USER=${USER}\
+  --cache-from denv/base:latest \
   --tag denv/base:latest .
 
 for DIR in java/11 python/2.7 python/3.7 ruby/2.5; do
@@ -16,6 +17,7 @@ for DIR in java/11 python/2.7 python/3.7 ruby/2.5; do
 
   docker build \
     --build-arg USER=${USER}\
+    --cache-from denv/${IMAGE}:${TAG} \
     --tag denv/${IMAGE}:${TAG} \
     ${DIR}
 done

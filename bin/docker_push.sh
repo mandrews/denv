@@ -8,7 +8,7 @@ for IMAGE in base java python; do
   docker push docker.pkg.github.com/$USER/denv/$IMAGE:latest
 done
 
-for DIR in java/11 python/2.7 python/3.7; do
+for DIR in java/11 python/2.7 python/3.7 ruby/2.5; do
   IFS='/' read -ra ARR <<< "$DIR"
   IMAGE=${ARR[0]:-base}
   TAG=${ARR[1]:-latest}

@@ -24,6 +24,7 @@ docker run \
   --interactive \
   --env USER=$USER \
   --env DEV_DIR=$DEV_DIR \
+  --publish 0.0.0.0:4000:4000 \
   --hostname $HOSTNAME \
   --volume $HOME/$DEV_DIR:$HOME/$DEV_DIR:delegated \
   --volume $HOME/Desktop:$HOME/Desktop:delegated  \

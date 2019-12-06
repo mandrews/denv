@@ -18,5 +18,5 @@ bin/docker_pull.sh
 cat <<-EOF
 To finish install:
 echo 'export PATH="\$PATH:\$HOME/.denv/bin"' >> ~/.bash_login
-echo 'exec \$HOME/.denv/bin/start.sh' >> ~/.bash_login
+echo 'exec \$HOME/.denv/bin/denv' >> ~/.bash_login
 EOF

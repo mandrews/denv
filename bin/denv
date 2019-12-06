@@ -18,13 +18,23 @@ else
   HOSTNAME="denv/${IMAGE}:${TAG}@${VOLUME}"
 fi
 
+if [[ $OSTYPE =~ darwin* ]]; then
+  exec bin/start.sh
+fi
+
+case $ARG in
+  jekyll)
+    IMAGE='ruby'
+    TAG='latest'
+    EXTRA='--publish 0.0.0.0:4000:4000'
+  ;;
+esac
 
 docker run \
   --tty \
   --interactive \
   --env GITHUB_USERNAME=$GITHUB_USERNAME \
   --env DEV_DIR=$DEV_DIR \
-  --publish 0.0.0.0:4000:4000 \
   --hostname $HOSTNAME \
   --volume $HOME/$DEV_DIR:$HOME/$DEV_DIR:delegated \
   --volume $HOME/Desktop:$HOME/Desktop:delegated  \
@@ -34,4 +44,5 @@ docker run \
   --volume $HOME/.gitconfig:$HOME/.gitconfig \
   --volume $HOME/.zsh_history:$HOME/.zsh_history:rw \
   --volume /var/run/docker.sock:/var/run/docker.sock \
+  $EXTRA \
   denv/${IMAGE}:${TAG}

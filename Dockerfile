@@ -32,6 +32,9 @@ RUN curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -o /t
     unzip /tmp/ngrok.zip -d /usr/local/bin && \
     rm /tmp/ngrok.zip
 
+# Install denv
+ADD bin/denv /usr/local/bin
+
 WORKDIR /Users/$GITHUB_USERNAME
 USER $GITHUB_USERNAME
 
@@ -48,13 +51,9 @@ RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.v
 COPY vimrc .vimrc
 RUN echo | echo | vim +PluginInstall +qall &>/dev/null
 
-# Configure denv
 ENV GITHUB_USERNAME $GITHUB_USERNAME
 ENV HOME /Users/$GITHUB_USERNAME
-ENV DENV_HOME=$HOME/.denv
 ENV DEV_DIR $DEV_DIR
-ENV PATH $DENV_HOME/bin:$PATH
-ADD bin/denv $DENV_HOME
 
 RUN mkdir -p /Users/$GITHUB_USERNAME/.local && \
     chown -R $GITHUB_USERNAME /Users/$GITHUB_USERNAME/.local

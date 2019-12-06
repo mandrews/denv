@@ -16,5 +16,3 @@ RUN gem update && \
     gem install jekyll bundler json
 
 USER $GITHUB_USERNAME
-
-EXPOSE 4000

@@ -7,15 +7,16 @@ ARG DEV_DIR
 RUN apk update && \
     apk add --no-cache \
       ack \
-      nodejs \
-      nodejs-dev \
-      npm \
       asciinema \
       bash \
       curl \
       docker \
       docker-compose \
       git \
+      hugo \
+      nodejs \
+      nodejs-dev \
+      npm \
       openssh-client \
       sudo \
       tmux \

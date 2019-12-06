@@ -22,13 +22,25 @@ if [[ $OSTYPE =~ darwin* ]]; then
   exec bin/start.sh
 fi
 
+PORTS=""
+
 case $ARG in
   jekyll)
     IMAGE='ruby'
     TAG='latest'
-    EXTRA='--publish 0.0.0.0:4000:4000'
+    PORTS="4000"
+  ;;
+  hugo)
+    IMAGE='base'
+    TAG='latest'
+    PORTS="1313"
   ;;
 esac
+
+EXTRA_ARGS=""
+for PORT in $PORTS; do
+  EXTRA_ARGS="$EXTRA_ARGS --publish 0.0.0.0:${PORT}:${PORT}"
+done
 
 docker run \
   --tty \
@@ -44,5 +56,5 @@ docker run \
   --volume $HOME/.gitconfig:$HOME/.gitconfig \
   --volume $HOME/.zsh_history:$HOME/.zsh_history:rw \
   --volume /var/run/docker.sock:/var/run/docker.sock \
-  $EXTRA \
+  $EXTRA_ARGS \
   denv/${IMAGE}:${TAG}

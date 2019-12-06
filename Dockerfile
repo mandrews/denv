@@ -7,6 +7,9 @@ ARG DEV_DIR
 RUN apk update && \
     apk add --no-cache \
       ack \
+      nodejs \
+      nodejs-dev \
+      npm \
       asciinema \
       bash \
       curl \
@@ -23,6 +26,11 @@ RUN mkdir -p /Users && \
     sed -e 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g' -i /etc/sudoers && \
     adduser -S $GITHUB_USERNAME -G root -h /Users/$GITHUB_USERNAME && \
     addgroup $GITHUB_USERNAME wheel
+
+# Install ngrok
+RUN curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -o /tmp/ngrok.zip && \
+    unzip /tmp/ngrok.zip -d /usr/local/bin && \
+    rm /tmp/ngrok.zip
 
 WORKDIR /Users/$GITHUB_USERNAME
 USER $GITHUB_USERNAME

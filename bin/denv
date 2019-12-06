@@ -35,6 +35,11 @@ case $ARG in
     TAG='latest'
     PORTS="1313"
   ;;
+  gatsby)
+    IMAGE='node'
+    TAG='latest'
+    PORTS="8080"
+  ;;
 esac
 
 EXTRA_ARGS=""

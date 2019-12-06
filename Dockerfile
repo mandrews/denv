@@ -14,9 +14,6 @@ RUN apk update && \
       docker-compose \
       git \
       hugo \
-      nodejs \
-      nodejs-dev \
-      npm \
       openssh-client \
       sudo \
       tmux \
@@ -32,6 +29,11 @@ RUN mkdir -p /Users && \
 RUN curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -o /tmp/ngrok.zip && \
     unzip /tmp/ngrok.zip -d /usr/local/bin && \
     rm /tmp/ngrok.zip
+
+# Install shellcheck
+ARG SC_VERSION=stable
+RUN wget -qO- "https://storage.googleapis.com/shellcheck/shellcheck-${SC_VERSION}.linux.x86_64.tar.xz" | tar -xJv && \
+  cp "shellcheck-${SC_VERSION}/shellcheck" /usr/local/bin/
 
 # Install denv
 ADD bin/denv /usr/local/bin

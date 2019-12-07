@@ -15,7 +15,11 @@ RUN npm install -g npm && \
     npm -g install \
       browserslist \
       caniuse-lite \
+      create-react-app \
       gatsby-cli \
       typescript
+
+RUN chown -R $GITHUB_USERNAME /Users/$GITHUB_USERNAME/.npm && \
+    chown -R $GITHUB_USERNAME /Users/$GITHUB_USERNAME/.config
 
 USER $GITHUB_USERNAME

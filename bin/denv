@@ -45,6 +45,11 @@ case $ARG in
     TAG='latest'
     PORTS="3000"
   ;;
+  react)
+    IMAGE='node'
+    TAG='latest'
+    PORTS="3000"
+  ;;
 esac
 
 EXTRA_ARGS=""

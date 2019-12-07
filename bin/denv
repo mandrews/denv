@@ -10,7 +10,7 @@ TAG=${ARR[1]:-latest}
 VOLUME=${2:-denv_$IMAGE}
 DEV_DIR=${DEV_DIR:-Development}
 
-docker volume create $VOLUME
+docker volume create "$VOLUME"
 
 if [[ $VOLUME = "denv_$IMAGE" ]]; then
   HOSTNAME="denv/${IMAGE}:${TAG}"
@@ -52,24 +52,25 @@ case $ARG in
   ;;
 esac
 
-EXTRA_ARGS=""
+EXTRA_ARGS=()
 for PORT in $PORTS; do
-  EXTRA_ARGS="$EXTRA_ARGS --publish 0.0.0.0:${PORT}:${PORT}"
+  EXTRA_ARGS+=("--publish 0.0.0.0:${PORT}:${PORT}")
 done
 
+# shellcheck disable=SC2086
 docker run \
   --tty \
   --interactive \
-  --env GITHUB_USERNAME=$GITHUB_USERNAME \
-  --env DEV_DIR=$DEV_DIR \
-  --hostname $HOSTNAME \
-  --volume $HOME/$DEV_DIR:$HOME/$DEV_DIR:delegated \
-  --volume $HOME/Desktop:$HOME/Desktop:delegated  \
-  --volume $VOLUME:$HOME/.local:delegated \
-  --volume $HOME/.ssh:$HOME/.ssh \
-  --volume $HOME/.bash_login:$HOME/.bash_login \
-  --volume $HOME/.gitconfig:$HOME/.gitconfig \
-  --volume $HOME/.zsh_history:$HOME/.zsh_history:rw \
+  --env GITHUB_USERNAME="$GITHUB_USERNAME" \
+  --env DEV_DIR="$DEV_DIR" \
+  --hostname "$HOSTNAME" \
+  --volume "$HOME/$DEV_DIR:$HOME/$DEV_DIR:delegated" \
+  --volume "$HOME/Desktop:$HOME/Desktop:delegated" \
+  --volume "$VOLUME:$HOME/.local:delegated" \
+  --volume "$HOME/.ssh:$HOME/.ssh" \
+  --volume "$HOME/.bash_login:$HOME/.bash_login" \
+  --volume "$HOME/.gitconfig:$HOME/.gitconfig" \
+  --volume "$HOME/.zsh_history:$HOME/.zsh_history:rw" \
   --volume /var/run/docker.sock:/var/run/docker.sock \
-  $EXTRA_ARGS \
-  denv/${IMAGE}:${TAG}
+  ${EXTRA_ARGS[*]} \
+  "denv/${IMAGE}:${TAG}"

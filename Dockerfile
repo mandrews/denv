@@ -36,7 +36,7 @@ RUN wget -qO- "https://storage.googleapis.com/shellcheck/shellcheck-${SC_VERSION
   cp "shellcheck-${SC_VERSION}/shellcheck" /usr/local/bin/
 
 # Install denv
-ADD bin/denv /usr/local/bin
+COPY bin/denv /usr/local/bin
 
 WORKDIR /Users/$GITHUB_USERNAME
 USER $GITHUB_USERNAME

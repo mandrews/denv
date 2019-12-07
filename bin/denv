@@ -40,6 +40,11 @@ case $ARG in
     TAG='latest'
     PORTS="8080"
   ;;
+  rails)
+    IMAGE='ruby'
+    TAG='latest'
+    PORTS="3000"
+  ;;
 esac
 
 EXTRA_ARGS=""

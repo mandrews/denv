@@ -4,15 +4,26 @@ ARG GITHUB_USERNAME
 
 USER root
 
-RUN apk add --update \
-    build-base \
-    ruby \
-    ruby-bigdecimal \
-    ruby-dev \
-    ruby-etc \
-    ruby-rdoc
+RUN apk update && \
+    apk add --no-cache \
+      build-base \
+      libxml2-dev \
+      nodejs \
+      nodejs-dev \
+      ruby \
+      ruby-bigdecimal \
+      ruby-dev \
+      ruby-etc \
+      ruby-rdoc \
+      sqlite-dev \
+      tzdata \
+      yarn
 
 RUN gem update && \
-    gem install jekyll bundler json
+    gem install \
+      bundler \
+      jekyll \
+      json \
+      rails
 
 USER $GITHUB_USERNAME

@@ -3,6 +3,19 @@
 set -o errexit
 pushd "$(cd "$(dirname "$0")" ; pwd -P )/.." > /dev/null
 
+PORTS=""
+
+while getopts 'p:' OPTION; do
+  case "$OPTION" in
+    p)
+      PORTS="$OPTARG"
+      ;;
+    *)
+      ;;
+  esac
+done
+shift "$((OPTIND -1))"
+
 ARG=${1:-'base:latest'}
 IFS=':' read -ra ARR <<< "$ARG"
 IMAGE=${ARR[0]:-base}
@@ -22,33 +35,31 @@ if [[ $OSTYPE =~ darwin* ]]; then
   exec bin/start.sh
 fi
 
-PORTS=""
-
 case $ARG in
   jekyll)
     IMAGE='ruby'
     TAG='latest'
-    PORTS="4000"
+    PORTS="${PORTS} 4000"
   ;;
   hugo)
     IMAGE='base'
     TAG='latest'
-    PORTS="1313"
+    PORTS="${PORTS} 1313"
   ;;
   gatsby)
     IMAGE='node'
     TAG='latest'
-    PORTS="8080"
+    PORTS="${PORTS} 8080"
   ;;
   rails)
     IMAGE='ruby'
     TAG='latest'
-    PORTS="3000"
+    PORTS="${PORTS} 3000"
   ;;
   react)
     IMAGE='node'
     TAG='latest'
-    PORTS="3000"
+    PORTS="${PORTS} 3000"
   ;;
 esac
 

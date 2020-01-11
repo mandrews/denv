@@ -36,7 +36,7 @@ denv java:11
 
 ![denv environment example](https://raw.githubusercontent.com/wiki/mandrews/denv/DENV.gif)
 
-Data in development environments can be persisted to `$HOME/.local` using Docker volumes. To create a new Docker volume, include the volume name as the second argument. This can effectively replace [RVM Gemsets](https://rvm.io/gemsets/basics) or [VEnv Virtual Environments](https://docs.python.org/3/library/venv.html).
+Data in development environments can be persisted using Docker volumes. To create a new Docker volume, include the volume name as the second argument. This can effectively replace [RVM Gemsets](https://rvm.io/gemsets/basics) or [VEnv Virtual Environments](https://docs.python.org/3/library/venv.html).
 
 
 **Example**:
@@ -49,6 +49,15 @@ denv python projectB
 ```
 
 ![denv volume example](https://raw.githubusercontent.com/wiki/mandrews/denv/DENV_VOLUME.gif)
+
+Each Development environment can open any number of ports.
+
+**Example**:
+```bash
+# Switch to new environment with port 5000 and 5001 open
+denv -p '5000 5001'
+```
+
 
 ## Other Dockerized Development Environments
 - [JAremko/alpine-vim](https://github.com/JAremko/alpine-vim)

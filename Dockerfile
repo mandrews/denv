@@ -6,6 +6,14 @@ ARG DEV_DIR
 # Install base toolchain
 RUN apk update && \
     apk add --no-cache \
+	  bash \
+	  curl \
+	  git \
+	  gnupg \
+	  libc6-compat \
+	  openssh-client \
+	  py-crcmod \
+	  python3 \
       ack \
       asciinema \
       bash \
@@ -14,6 +22,7 @@ RUN apk update && \
       docker-compose \
       git \
       hugo \
+      jq \
       openssh-client \
       sudo \
       tmux \
@@ -34,6 +43,21 @@ RUN curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -o /t
 ARG SC_VERSION=stable
 RUN wget -qO- "https://storage.googleapis.com/shellcheck/shellcheck-${SC_VERSION}.linux.x86_64.tar.xz" | tar -xJv && \
   cp "shellcheck-${SC_VERSION}/shellcheck" /usr/local/bin/
+
+# Install Google Cloud SDK
+ARG CLOUD_SDK_VERSION=275.0.0
+ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
+ENV PATH /google-cloud-sdk/bin:$PATH
+RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
+    tar xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
+    rm google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
+    gcloud config set core/disable_usage_reporting true && \
+    gcloud config set component_manager/disable_update_check true
+
+# Install AWS CLI
+RUN pip3 install --upgrade pip && \
+    pip3 install \
+      awscli
 
 # Install denv
 COPY bin/denv /usr/local/bin

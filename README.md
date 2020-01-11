@@ -53,7 +53,3 @@ denv python projectB
 ## Other Dockerized Development Environments
 - [JAremko/alpine-vim](https://github.com/JAremko/alpine-vim)
 - [zen-cmd](https://github.com/thierrymarianne/demo-zen-command-line)
-
-## TODO
-- [ ] Add [`awscli`](https://aws.amazon.com/cli/) to `base`
-- [ ] Add [`gcp`](https://cloud.google.com/sdk/install) to `base`

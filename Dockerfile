@@ -6,14 +6,6 @@ ARG DEV_DIR
 # Install base toolchain
 RUN apk update && \
     apk add --no-cache \
-	  bash \
-	  curl \
-	  git \
-	  gnupg \
-	  libc6-compat \
-	  openssh-client \
-	  py-crcmod \
-	  python3 \
       ack \
       asciinema \
       bash \
@@ -21,9 +13,13 @@ RUN apk update && \
       docker \
       docker-compose \
       git \
+      gnupg \
       hugo \
       jq \
+      libc6-compat \
       openssh-client \
+      py-crcmod \
+      python3 \
       sudo \
       tmux \
       vim \

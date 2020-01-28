@@ -14,6 +14,7 @@ services:
       - $HOME/.bash_login:$HOME/.bash_login
       - $HOME/.gitconfig:$HOME/.gitconfig
       - $HOME/.config:$HOME/.config
+      - $HOME/.cache:$HOME/.cache
       - $HOME/.aws:$HOME/.aws
       - $HOME/.ssh:$HOME/.ssh
       - $HOME/.zsh_history:$HOME/.zsh_history:rw

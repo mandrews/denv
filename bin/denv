@@ -82,6 +82,7 @@ docker run \
   --volume "$HOME/.bash_login:$HOME/.bash_login" \
   --volume "$HOME/.gitconfig:$HOME/.gitconfig" \
   --volume "$HOME/.config:$HOME/.config" \
+  --volume "$HOME/.cache:$HOME/.cache" \
   --volume "$HOME/.aws:$HOME/.aws" \
   --volume "$HOME/.zsh_history:$HOME/.zsh_history:rw" \
   --volume /var/run/docker.sock:/var/run/docker.sock \

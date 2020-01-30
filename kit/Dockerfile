@@ -6,9 +6,14 @@ USER root
 
 RUN apk update && \
     apk add --no-cache \
+      build-base \
+      gcc \
+      make \
       nodejs \
       nodejs-dev \
       npm \
+      postgresql-client \
+      postgresql-dev \
       python3 \
       python3-dev
 

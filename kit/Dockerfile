@@ -9,6 +9,7 @@ RUN apk update && \
       build-base \
       gcc \
       make \
+      mongodb-tools \
       nodejs \
       nodejs-dev \
       npm \

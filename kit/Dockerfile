@@ -7,6 +7,7 @@ USER root
 RUN apk update && \
     apk add --no-cache \
       build-base \
+      gettext \
       gcc \
       make \
       mongodb-tools \
@@ -29,5 +30,7 @@ RUN pip3 install --upgrade pip && \
 
 # Install Heroku CLI
 RUN curl https://cli-assets.heroku.com/install.sh | sh
+
+RUN gcloud -q components install kubectl
 
 USER $GITHUB_USERNAME

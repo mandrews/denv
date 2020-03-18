@@ -26,7 +26,8 @@ RUN npm install -g npm && \
 
 RUN pip3 install --upgrade pip && \
     pip3 install \
-      jinja2
+      jinja2 \
+      black
 
 # Install Heroku CLI
 RUN curl https://cli-assets.heroku.com/install.sh | sh

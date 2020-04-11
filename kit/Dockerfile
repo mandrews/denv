@@ -26,8 +26,11 @@ RUN npm install -g npm && \
 
 RUN pip3 install --upgrade pip && \
     pip3 install \
+      black \
       jinja2 \
-      black
+      jinja2-cli \
+      pylint
+      
 
 # Install Heroku CLI
 RUN curl https://cli-assets.heroku.com/install.sh | sh

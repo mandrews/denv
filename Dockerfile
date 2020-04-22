@@ -17,6 +17,7 @@ RUN apk update && \
       hugo \
       jq \
       libc6-compat \
+      man \
       openssh-client \
       py-crcmod \
       python3 \

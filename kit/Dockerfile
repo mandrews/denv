@@ -26,8 +26,9 @@ RUN npm install -g npm && \
 
 RUN pip3 install --upgrade pip && \
     pip3 install \
-      jinja2 \
       black \
+      jinja2 \
+      jinja2-cli \
       pylint
 
 COPY pylintrc /Users/$GITHUB_USERNAME/.pylintrc

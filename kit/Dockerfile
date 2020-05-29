@@ -27,7 +27,10 @@ RUN npm install -g npm && \
 RUN pip3 install --upgrade pip && \
     pip3 install \
       jinja2 \
-      black
+      black \
+      pylint
+
+COPY pylintrc /Users/$GITHUB_USERNAME/.pylintrc
 
 # Install Heroku CLI
 RUN curl https://cli-assets.heroku.com/install.sh | sh

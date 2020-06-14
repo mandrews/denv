@@ -17,7 +17,7 @@ RUN apk update && \
       hugo \
       jq \
       libc6-compat \
-      man man-pages mdocml-apropos less less-doc \
+      mandoc man-pages mdocml less less-doc \
       openssh-client \
       py-crcmod \
       python3 \

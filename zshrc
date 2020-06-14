@@ -16,6 +16,7 @@ source $ZSH/oh-my-zsh.sh
 
 # oh-my-zsh overrides
 unsetopt sharehistory
+unset RPROMPT
 
 # vi mode
 bindkey -v

@@ -21,6 +21,7 @@ RUN apk update && \
       openssh-client \
       py-crcmod \
       python3 \
+      py3-pip \
       sudo \
       tmux \
       vim \

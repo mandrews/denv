@@ -18,6 +18,7 @@ for DIR in $DENV_TAGGED_IMAGES; do
   fi
 
   docker build \
+    --no-cache \
     --build-arg "GITHUB_USERNAME=${GITHUB_USERNAME}" \
     --build-arg "DEV_DIR=${DEV_DIR}" \
     --cache-from "denv/${IMAGE}:${TAG}" \

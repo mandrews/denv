@@ -30,7 +30,8 @@ RUN apk update && \
 RUN mkdir -p /Users && \
     sed -e 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g' -i /etc/sudoers && \
     adduser -S $GITHUB_USERNAME -G root -h /Users/$GITHUB_USERNAME && \
-    addgroup $GITHUB_USERNAME wheel
+    addgroup $GITHUB_USERNAME wheel && \
+    addgroup $GITHUB_USERNAME docker
 
 # Install ngrok
 RUN curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -o /tmp/ngrok.zip && \

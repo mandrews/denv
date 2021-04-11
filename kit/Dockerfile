@@ -36,6 +36,7 @@ COPY pylintrc /Users/$GITHUB_USERNAME/.pylintrc
 # Install Heroku CLI
 RUN curl https://cli-assets.heroku.com/install.sh | sh
 
-RUN gcloud -q components install kubectl
+RUN gcloud -q components install alpha beta bq core gsutil kubectl && \
+    gcloud -q components update
 
 USER $GITHUB_USERNAME

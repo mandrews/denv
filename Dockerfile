@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:latest
 
 ARG GITHUB_USERNAME
 ARG DEV_DIR
@@ -44,7 +44,7 @@ RUN wget -qO- "https://storage.googleapis.com/shellcheck/shellcheck-${SC_VERSION
   cp "shellcheck-${SC_VERSION}/shellcheck" /usr/local/bin/
 
 # Install Google Cloud SDK
-ARG CLOUD_SDK_VERSION=275.0.0
+ARG CLOUD_SDK_VERSION=338.0.0
 ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
 ENV PATH /google-cloud-sdk/bin:$PATH
 RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \

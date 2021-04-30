@@ -10,7 +10,6 @@ RUN apk update && \
       gettext \
       gcc \
       make \
-      mongodb-tools \
       nodejs \
       nodejs-dev \
       npm \

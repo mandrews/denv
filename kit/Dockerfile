@@ -25,7 +25,7 @@ RUN npm install -g npm && \
 
 RUN pip3 install --upgrade pip && \
     pip3 install \
-      black==20.8b1 \
+      black==21.5b1 \
       jinja2 \
       jinja2-cli \
       pylint

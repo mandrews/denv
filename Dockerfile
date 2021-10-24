@@ -9,6 +9,7 @@ RUN apk update && \
       ack \
       asciinema \
       bash \
+      coreutils \
       curl \
       docker \
       docker-compose \

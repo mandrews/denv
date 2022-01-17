@@ -16,7 +16,8 @@ RUN apk update && \
       postgresql-client \
       postgresql-dev \
       python3 \
-      python3-dev
+      python3-dev \
+      zip
 
 RUN npm install -g npm && \
     npm update && \
@@ -25,7 +26,7 @@ RUN npm install -g npm && \
 
 RUN pip3 install --upgrade pip && \
     pip3 install \
-      black==21.5b1 \
+      black==21.9b0 \
       jinja2 \
       jinja2-cli \
       pylint
